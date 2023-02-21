@@ -1,9 +1,11 @@
 # Polyxia 🚀
 
-* [Project Features](#project-features)
-* [Projects overview](#projects-overview)
-* [Contributing](#contributing)
-* [License](#license)
+- [Polyxia 🚀](#polyxia-)
+  - [Project Features](#project-features)
+  - [Projects overview](#projects-overview)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 **Polyxia** is a voice assistant project created by DevOps students at Polytech Montpellier that includes a FaaS architecture based on [Rik](https://github.com/rik-org/rik) and [Firecracker](https://firecracker-microvm.github.io/). [Rik](https://github.com/rik-org/rik) is an experimental workload orchestrator that enables deployment of cloud applications written in Rust, providing a way to manage and schedule application instances. [Firecracker](https://firecracker-microvm.github.io/), on the other hand, is an open-source project by AWS that allows for lightweight, microVM-based isolation of workloads, designed to be used with containers or serverless functions for an additional layer of security and isolation.
 
@@ -29,7 +31,9 @@ In addition, Polyxia features an NLU algorithm for detecting user intent from te
 [Gateway](https://github.com/polyxia-org/gateway)|[![Super Linter](https://img.shields.io/github/actions/workflow/status/polyxia-org/gateway/ci.yml?branch=main)](https://github.com/polyxia-org/gateway/tree/main)|Gateway is the entry point of the PolyXia platform. It is responsible for the communication with the user and the orchestration of the different components.|
 |[Firepilot](https://github.com/polyxia-org/firepilot)|[![Super Linter](https://img.shields.io/github/actions/workflow/status/polyxia-org/firepilot/ci.yml?branch=main)](https://github.com/polyxia-org/firepilot/tree/main)|Rust API to pilot Firecracker.|
 
+## Documentation
 
+The documentation is available at : https://polyxia-org.github.io/polyxia
 
 ## Contributing
 
