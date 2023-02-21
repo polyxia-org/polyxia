@@ -23,7 +23,7 @@ npm init -y
 Now, create a file `handler.js` with the following content : 
 
 ```js
-export.handler = async function(req, res) {
+exports.handler = async function(req, res) {
     // `req` is an Express request object
     // See: https://expressjs.com/en/api.html#req.app
     console.log(req.body)
