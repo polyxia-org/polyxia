@@ -4,6 +4,7 @@
   - [Project Features](#project-features)
   - [Projects overview](#projects-overview)
   - [Documentation](#documentation)
+  - [Architecture](#architecture)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -34,6 +35,12 @@ In addition, Polyxia features an NLU algorithm for detecting user intent from te
 ## Documentation
 
 The documentation is available at : https://polyxia-org.github.io/polyxia
+
+## Architecture
+
+This is the schema of the current architecture of Polyxia:
+
+![Architecture](./images/architecture_schema.png)
 
 ## Contributing
 
