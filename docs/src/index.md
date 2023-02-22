@@ -1,0 +1,4 @@
+< {"boot-source":{"kernel_image_path":"/root/morty-cli/func/vmlinux.bin","boot_args":"ip=192.168.1.138::192.168.1.137:255.255.255.252::eth0:off","initrd_path":null},"drives":[{"drive_id":"rootfs","path_on_host":"/root/morty-cli/func/rootfs.ext4","is_root_device":true,"is_read_only":false}],"network-interfaces":[{"iface_id":"eth0","guest_mac":"AA:FC:00:00:00:01","host_dev_name":"rik-fc-tap"}]}
+\ No newline at end of file§
+---
+> {"boot-source":{"kernel_image_path":"/root/morty-cli/func/vmlinux.bin","boot_args":"ip=192.168.1.2::192.168.1.1:255.255.255.252::eth0:off","initrd_path":null},"drives":[{"drive_id":"rootfs","path_on_host":"/root/morty-cli/func/kalil.ext4","is_root_device":true,"is_read_only":false}],"network-interfaces":[{"iface_id":"eth0","guest_mac":"AA:FC:00:00:00:02","host_dev_name":"tap0"}]}
