@@ -74,7 +74,7 @@ iptables -A FORWARD -i "${HOST_TAP}" -o "${IFNET}" -j ACCEPT
 cat <<EOF > "$(pwd)/${FUNCTION_NAME}.cfg.json"
 {
     "boot-source": {
-        "kernel_image_path": "$(pwd)/vmlinux",
+        "kernel_image_path": "$(pwd)/vmlinux.bin",
         "boot_args": "console=ttyS0 reboot=k nomodules random.trust_cpu=on panic=1 pci=off tsc=reliable i8042.nokbd i8042.noaux ipv6.disable=1 quiet loglevel=0 ip=${VM_IP}::${GW_IP}:255.255.255.252::eth0:off nameserver=8.8.8.8"
     },
     "drives": [
