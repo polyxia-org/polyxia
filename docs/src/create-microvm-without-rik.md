@@ -50,11 +50,11 @@ drwxr-xr-x  4 debian debian      4096 Feb 22 21:57 morty-runtimes
 -rw-r--r--  1 debian debian  45614488 Feb 22 22:07 vmlinux
 ```
 
-Now, you simply need to run the following command to build and run the template function into a microVM : 
+Now, you simply need to run the following command to build and run the template function into a microVM. The `<TEMPLATE>` argument is optional and if you omit it, `node-19` will be automatically selected for you. You can check the list of the available templates [here](https://github.com/polyxia-org/morty-runtimes/tree/main/template).
 
 ```bash
 # You must run the script as root
-sudo bash start-vm.sh
+sudo bash start-vm.sh <TEMPLATE>
 
 # Once everything has booted, you should see at the end of the logs the following lines : 
 INFO[0000] Started process /usr/local/bin/node /app/index.js (pid=482) 

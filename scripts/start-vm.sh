@@ -5,22 +5,20 @@
 # the new build system.
 
 # To run this script, you must be root
-if [ "$EUID" -ne 0 ]; then 
+if [ "$EUID" -ne 0 ]; then
     echo "[ERROR] The script requires root privileges. Please run as root or use sudo."
     exit 1
 fi
 
-FUNCTION_NAME="node-$(date +"%s")"
-
-rm -rf *.ext4
-rm -rf *.cfg.json
+TEMPLATE="${1:-node-19}"
+FUNCTION_NAME="${TEMPLATE}-$(date +"%s")"
 
 # ============================================
 # BUILD
 # ============================================
 
 # Build the docker image of the runtime, we will manipulate the rootfs after
-docker build -t "${FUNCTION_NAME}:latest" ./morty-runtimes/template/node-19
+docker build -t "${FUNCTION_NAME}:latest" "./morty-runtimes/template/${TEMPLATE}"
 
 # Create the ext4 mount point
 dd if=/dev/zero of="${FUNCTION_NAME}.ext4" bs=1M count=300
@@ -41,9 +39,10 @@ docker run --rm -i -v /tmp/${FUNCTION_NAME}:/my-rootfs -v /dev/urandom:/dev/rand
 # Inject the custom /sbin/init script
 cat <<EOF > $(pwd)/alpha_init
 #!/bin/sh
-export ALPHA_PROCESS_COMMAND="/usr/local/bin/node /app/index.js"
+source /app/env.sh
 /usr/bin/alpha
 EOF
+
 mv "/tmp/${FUNCTION_NAME}/sbin/init" "/tmp/${FUNCTION_NAME}/sbin/init.old"
 cp "$(pwd)/alpha_init" "/tmp/${FUNCTION_NAME}/sbin/init"
 chmod a+x "/tmp/${FUNCTION_NAME}/sbin/init"
@@ -62,6 +61,7 @@ GW_IP="172.16.0.1"
 VM_IP="172.16.0.2"
 
 # Setup the tap interface for the function
+ip link delete "${HOST_TAP}" || true
 ip tuntap add "${HOST_TAP}" mode tap
 ip addr add "${GW_IP}/24" dev "${HOST_TAP}"
 ip link set "${HOST_TAP}" up
@@ -74,8 +74,8 @@ iptables -A FORWARD -i "${HOST_TAP}" -o "${IFNET}" -j ACCEPT
 cat <<EOF > "$(pwd)/${FUNCTION_NAME}.cfg.json"
 {
     "boot-source": {
-        "kernel_image_path": "$(pwd)/vmlinux.bin",
-        "boot_args": "console=ttyS0 reboot=k nomodules random.trust_cpu=on panic=1 pci=off tsc=reliable i8042.nokbd i8042.noaux ipv6.disable=1  nameserver=8.8.8.8 ip=${VM_IP}::${GW_IP}:255.255.255.252::eth0:off"
+        "kernel_image_path": "$(pwd)/vmlinux",
+        "boot_args": "console=ttyS0 reboot=k nomodules random.trust_cpu=on panic=1 pci=off tsc=reliable i8042.nokbd i8042.noaux ipv6.disable=1 quiet loglevel=0 ip=${VM_IP}::${GW_IP}:255.255.255.252::eth0:off nameserver=8.8.8.8"
     },
     "drives": [
         {
