@@ -9,20 +9,15 @@ This guide will help you set up your first function into a Firecracker microVM, 
 
 ## Steps
 
-First of all, you should create a temporary directory on your host : 
+First of all, you should create a temporary directory on your host and place the `start-vm.sh` script into it:
 
 ```bash
 mkdir -p /tmp/getting-started-fc
+cp scripts/start-vm.sh /tmp/getting-started-fc/
 cd /tmp/getting-started-fc
 ```
 
 **For the rest of the commands above, we assume that you are in the `/tmp/getting-started-fc` directory.**
-
-Copy the `start-vm.sh` script to your directory : 
-
-```bash
-cp /path/to/polyxia-org/repo/scripts/start-vm.sh .
-```
 
 Download the kernel :
 
@@ -30,7 +25,7 @@ Download the kernel :
 curl -k -o vmlinux.bin https://162.38.112.10:13808/swift/v1/AUTH_9ab97b0fd6984ca2a6261286b66f4cae/polyxia-dev/vmlinux
 ```
 
-Clone the runtimes : 
+Clone the runtimes :
 
 ```bash
 # SSH
@@ -40,7 +35,7 @@ git clone git@github.com:polyxia-org/morty-runtimes.git
 git clone https://github.com/polyxia-org/morty-runtimes.git
 ```
 
-You should have the following folder architecture : 
+You should have the following folder architecture :
 
 ```bash
 ls -la
@@ -56,18 +51,18 @@ Now, you simply need to run the following command to build and run the template 
 # You must run the script as root
 sudo bash start-vm.sh <TEMPLATE>
 
-# Once everything has booted, you should see at the end of the logs the following lines : 
-INFO[0000] Started process /usr/local/bin/node /app/index.js (pid=482) 
-INFO[0000] Alpha server listening on 0.0.0.0:8080 
+# Once everything has booted, you should see at the end of the logs the following lines :
+INFO[0000] Started process /usr/local/bin/node /app/index.js (pid=482)
+INFO[0000] Alpha server listening on 0.0.0.0:8080
 ```
 
-From another terminal, you can now invoke your function by using the following command : 
+From another terminal, you can now invoke your function by using the following command :
 
 ```bash
 curl http://172.16.0.2:8080
 ```
 
-You should see a similar output : 
+You should see a similar output :
 
 ```json
 {
@@ -81,7 +76,7 @@ You should see a similar output :
 }
 ```
 
-To exit your VM, get the PID of your firecracker process and kill it : 
+To exit your VM, get the PID of your firecracker process and kill it :
 
 ```bash
 ps -auxf | grep firecracker
