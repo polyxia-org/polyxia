@@ -33,7 +33,7 @@ In addition, Polyxia features an NLU algorithm for detecting user intent from te
 
 ## Documentation
 
-The documentation is available at : https://polyxia-org.github.io/polyxia
+The documentation is available at : https://polyxia-org.github.io/
 
 ## Contributing
 
